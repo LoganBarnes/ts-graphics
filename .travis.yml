@@ -12,5 +12,6 @@ deploy:
   api_key:
     secure: KJuvcGQV4kdjk7BgqE9eNh0QTQW5MtqGlz/p3gijQMpka816++1Qq4XnXtprNTMBcVjTa14EYqNi1tFdODzAdoFokB+kC7QAvPxM4lT+z4CiQ2ekOt4/YSLRBgrgCHDodDX3fw/498hUPZvBn0zQkx/ga+VkNhcABd4w7vXsBRzDSAmzdNyz2U3MrPKI/ztyQoXy17lmvlKZy4OJHpoaAChvl3KG1VcQ8NlX1h3JhiJKJqKyIwWnOAW8iDJDJmzycKGds4vhNocTGv48RN7kEiLAM3465lnzmHyKwih8eUT6bWmrGYxgNRRj8jr1QdfuYk+Kr5FXxPGGxN15PANdCIh391RVIXtnOMypN9K5LpVjCItcqfhGd7JA5YPQKOW1IcC7hRstOzpUrLiahSTxhVxHIbdkJzipBvqD8O7BLrCYYveEulrwBaitQGXJJvFPsyEiL+lm4ohrgbuQBw/ei7ZXDLLHzi4GC9JkysHoYx2YllZm8dT/0XnP5sLXrKxI1owkEn3f9s+rwIA11CT20S5rKWh0J/5mH7Vh+PWFERQd79YRFG2wrOgPS9PUjMjDdGi2/xy3os0YlO+OfC/OByM3m7sLIecyzX79/OamPpyP7HvAgO8x2Z3ZxyQqgYf1EZiVjppSgegHKnXuUmkROonFzuP7tkA5GjJT+6xXiWQ=
   on:
-    # tags: false
+    branch: master
     repo: LoganBarnes/ts-graphics
+  skip_cleanup: true # need the generated dist folder
