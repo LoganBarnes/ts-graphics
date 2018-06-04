@@ -1,5 +1,5 @@
 import { GLBuffer } from './GLBuffer';
-import { GLProgram } from '@/graphics/webgl/GLProgram';
+import { GLProgram } from './GLProgram';
 
 interface VAOElement {
   name: string;

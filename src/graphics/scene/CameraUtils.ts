@@ -1,6 +1,6 @@
 import { vec2, vec3 } from 'gl-matrix';
-import { Camera } from '@/graphics/scene/Camera';
-import { Ray3 } from '@/graphics/scene/Ray';
+import { Camera } from './Camera';
+import { Ray3 } from './Ray';
 
 class CameraUtils {
   static getClipspacePos(screenX: number, screenY: number, viewWidth: number, viewHeight: number) {

@@ -1,6 +1,6 @@
 import { vec3, glMatrix } from 'gl-matrix';
-import { Ray3 } from '@/graphics/scene/Ray';
-import { Camera } from '@/graphics/scene/Camera';
+import { Ray3 } from './Ray';
+import { Camera } from './Camera';
 
 class CameraMover {
   private _camera: Camera;
