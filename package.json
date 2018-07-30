@@ -9,10 +9,12 @@
   },
   "devDependencies": {
     "@types/gl-matrix": "^2.4.0",
+    "prettier": "^1.14.0",
     "ts-loader": "^4.3.1",
     "typescript": "^2.9.1"
   },
   "scripts": {
+    "format": "prettier --write \"**/*.ts\"",
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
     "tsc": "tsc"
   },

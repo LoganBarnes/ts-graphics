@@ -1,6 +1,6 @@
-import { vec3, glMatrix } from 'gl-matrix';
-import { Ray3 } from './Ray';
-import { Camera } from './Camera';
+import { vec3, glMatrix } from "gl-matrix";
+import { Ray3 } from "./Ray";
+import { Camera } from "./Camera";
 
 class CameraMover {
   private _camera: Camera;
@@ -69,7 +69,7 @@ class CameraMover {
     this._camera.lookAt(eye, pnt);
   }
 
-  intersectPlaneAtAnchor(ray: Ray3): (vec3 | null) {
+  intersectPlaneAtAnchor(ray: Ray3): vec3 | null {
     // plane at p with normal n
     let n: vec3 = this._camera.lookVec;
     vec3.scale(n, n, -1.0);

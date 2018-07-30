@@ -1,9 +1,9 @@
-import { GLProgram, GLShader } from './GLProgram';
-import { GLBuffer } from './GLBuffer';
-import { GLVertexArray, VAOElement } from './GLVertexArray';
-import { GLTexture } from './GLTexture';
-import { GLFramebuffer } from './GLFramebuffer';
-import { vec2 } from 'gl-matrix';
+import { GLProgram, GLShader } from "./GLProgram";
+import { GLBuffer } from "./GLBuffer";
+import { GLVertexArray, VAOElement } from "./GLVertexArray";
+import { GLTexture } from "./GLTexture";
+import { GLFramebuffer } from "./GLFramebuffer";
+import { vec2 } from "gl-matrix";
 
 class GLUtils {
   private context: WebGLRenderingContext;
@@ -49,7 +49,10 @@ class GLUtils {
     return new GLProgram(this.context, ...shaders);
   }
 
-  createVbo(vboData: null | Float32Array, dynamicDraw: boolean = false): GLBuffer {
+  createVbo(
+    vboData: null | Float32Array,
+    dynamicDraw: boolean = false
+  ): GLBuffer {
     const gl: WebGLRenderingContext = this.context;
     return new GLBuffer(
       gl,
@@ -69,9 +72,18 @@ class GLUtils {
     );
   }
 
-  createVao(program: GLProgram, vbo: GLBuffer, totalStride: number, vaoElements: VAOElement[]): GLVertexArray {
+  createVao(
+    program: GLProgram,
+    vbo: GLBuffer,
+    totalStride: number,
+    vaoElements: VAOElement[]
+  ): GLVertexArray {
     return new GLVertexArray(
-      this.context, program, vbo, totalStride, vaoElements
+      this.context,
+      program,
+      vbo,
+      totalStride,
+      vaoElements
     );
   }
 

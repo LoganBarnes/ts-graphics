@@ -1,4 +1,3 @@
-
 class GLBuffer {
   private gl: WebGLRenderingContext;
   private bufferId: WebGLBuffer;
@@ -15,7 +14,7 @@ class GLBuffer {
     this.type = type;
     this.usage = usage;
     {
-      const vbo: (WebGLBuffer | null) = gl.createBuffer();
+      const vbo: WebGLBuffer | null = gl.createBuffer();
       if (vbo === null) {
         throw new Error("Failed to create WebGL buffer");
       }

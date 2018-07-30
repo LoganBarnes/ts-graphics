@@ -1,4 +1,4 @@
-import { Camera } from './Camera';
+import { Camera } from "./Camera";
 
 abstract class Updatable {
   abstract onUpdate(timestep: number): void;

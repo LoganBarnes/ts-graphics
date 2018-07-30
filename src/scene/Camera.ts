@@ -1,4 +1,4 @@
-import { vec3, mat4, glMatrix } from 'gl-matrix';
+import { vec3, mat4, glMatrix } from "gl-matrix";
 
 class Camera {
   // view matrix variables
@@ -166,7 +166,12 @@ class Camera {
     );
   }
 
-  perspective(fovyDegrees: number, aspect: number, zNear: number, zFar: number): void {
+  perspective(
+    fovyDegrees: number,
+    aspect: number,
+    zNear: number,
+    zFar: number
+  ): void {
     this._fovYDegrees = fovyDegrees;
     this.fovYRadians = glMatrix.toRadian(this._fovYDegrees);
     this._aspectRatio = aspect;
@@ -201,7 +206,14 @@ class Camera {
     );
   }
 
-  ortho(left: number, right: number, bottom: number, top: number, near: number = 0, far: number = 1): void {
+  ortho(
+    left: number,
+    right: number,
+    bottom: number,
+    top: number,
+    near: number = 0,
+    far: number = 1
+  ): void {
     this._orthoLeft = left;
     this._orthoRight = right;
     this._orthoBottom = bottom;
@@ -259,19 +271,39 @@ class Camera {
   }
 
   set fovYDegrees(fovYDeg: number) {
-    this.perspective(fovYDeg, this._aspectRatio, this._nearPlane, this._farPlane);
+    this.perspective(
+      fovYDeg,
+      this._aspectRatio,
+      this._nearPlane,
+      this._farPlane
+    );
   }
 
   set aspectRatio(aspect: number) {
-    this.perspective(this._fovYDegrees, aspect, this._nearPlane, this._farPlane);
+    this.perspective(
+      this._fovYDegrees,
+      aspect,
+      this._nearPlane,
+      this._farPlane
+    );
   }
 
   set nearPlane(near: number) {
-    this.perspective(this._fovYDegrees, this._aspectRatio, near, this._farPlane);
+    this.perspective(
+      this._fovYDegrees,
+      this._aspectRatio,
+      near,
+      this._farPlane
+    );
   }
 
   set farPlane(far: number) {
-    this.perspective(this._fovYDegrees, this._aspectRatio, this._nearPlane, far);
+    this.perspective(
+      this._fovYDegrees,
+      this._aspectRatio,
+      this._nearPlane,
+      far
+    );
   }
 
   set orthoLeft(orthoLeft: number) {

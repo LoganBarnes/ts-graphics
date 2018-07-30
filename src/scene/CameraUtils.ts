@@ -1,9 +1,14 @@
-import { vec2, vec3 } from 'gl-matrix';
-import { Camera } from './Camera';
-import { Ray3 } from './Ray';
+import { vec2, vec3 } from "gl-matrix";
+import { Camera } from "./Camera";
+import { Ray3 } from "./Ray";
 
 class CameraUtils {
-  static getClipspacePos(screenX: number, screenY: number, viewWidth: number, viewHeight: number) {
+  static getClipspacePos(
+    screenX: number,
+    screenY: number,
+    viewWidth: number,
+    viewHeight: number
+  ) {
     let p: vec2 = vec2.fromValues(screenX / viewWidth, -screenY / viewHeight);
     vec2.scaleAndAdd(p, vec2.fromValues(-1, 1), p, 2.0);
     return p;
@@ -17,15 +22,21 @@ class CameraUtils {
     viewHeight: number,
     perspective: boolean = true
   ): Ray3 {
-
-    let clipP: vec2 = this.getClipspacePos(screenX, screenY, viewWidth, viewHeight);
+    let clipP: vec2 = this.getClipspacePos(
+      screenX,
+      screenY,
+      viewWidth,
+      viewHeight
+    );
 
     if (camera.isOrthographic()) {
       const clipNearPoint: vec3 = vec3.fromValues(clipP[0], clipP[1], 0);
 
       let worldNearPoint: vec3 = vec3.create();
       vec3.transformMat4(
-        worldNearPoint, clipNearPoint, camera.inverseScaleViewMatrix
+        worldNearPoint,
+        clipNearPoint,
+        camera.inverseScaleViewMatrix
       );
 
       const direction: vec3 = camera.lookVec;
@@ -40,7 +51,9 @@ class CameraUtils {
 
     let worldFarPoint: vec3 = vec3.create();
     vec3.transformMat4(
-      worldFarPoint, clipFarPoint, camera.inverseScaleViewMatrix
+      worldFarPoint,
+      clipFarPoint,
+      camera.inverseScaleViewMatrix
     );
 
     const origin: vec3 = camera.eyeVec;

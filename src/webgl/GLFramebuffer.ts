@@ -1,5 +1,5 @@
-import { GLTexture } from './GLTexture';
-import { vec2 } from 'gl-matrix';
+import { GLTexture } from "./GLTexture";
+import { vec2 } from "gl-matrix";
 
 // assumes 2D
 class GLFramebuffer {
@@ -13,7 +13,7 @@ class GLFramebuffer {
     this._texture = texture;
     this.type = gl.FRAMEBUFFER;
     {
-      const fbo: (WebGLFramebuffer | null) = gl.createFramebuffer();
+      const fbo: WebGLFramebuffer | null = gl.createFramebuffer();
       if (fbo === null) {
         throw new Error("Failed to create WebGL framebuffer");
       }
@@ -25,33 +25,50 @@ class GLFramebuffer {
 
     this.bind();
 
-    const renderbuffer: (WebGLRenderbuffer | null) = gl.createRenderbuffer();
+    const renderbuffer: WebGLRenderbuffer | null = gl.createRenderbuffer();
     if (renderbuffer === null) {
       throw new Error("Failed to create WebGL renderbuffer");
     }
     gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
     gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, w, h);
 
-    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderbuffer);
+    gl.framebufferRenderbuffer(
+      gl.FRAMEBUFFER,
+      gl.DEPTH_ATTACHMENT,
+      gl.RENDERBUFFER,
+      renderbuffer
+    );
     gl.bindRenderbuffer(gl.RENDERBUFFER, null);
 
     this._texture.bind();
-    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this._texture.glId, 0);
+    gl.framebufferTexture2D(
+      gl.FRAMEBUFFER,
+      gl.COLOR_ATTACHMENT0,
+      gl.TEXTURE_2D,
+      this._texture.glId,
+      0
+    );
 
     const status: GLenum = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
     switch (status) {
       case gl.FRAMEBUFFER_COMPLETE:
         break;
       case gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
-        throw new Error('Incomplete framebuffer: FRAMEBUFFER_INCOMPLETE_ATTACHMENT');
+        throw new Error(
+          "Incomplete framebuffer: FRAMEBUFFER_INCOMPLETE_ATTACHMENT"
+        );
       case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
-        throw new Error('Incomplete framebuffer: FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT');
+        throw new Error(
+          "Incomplete framebuffer: FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT"
+        );
       case gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS:
-        throw new Error('Incomplete framebuffer: FRAMEBUFFER_INCOMPLETE_DIMENSIONS');
+        throw new Error(
+          "Incomplete framebuffer: FRAMEBUFFER_INCOMPLETE_DIMENSIONS"
+        );
       case gl.FRAMEBUFFER_UNSUPPORTED:
-        throw new Error('Incomplete framebuffer: FRAMEBUFFER_UNSUPPORTED');
+        throw new Error("Incomplete framebuffer: FRAMEBUFFER_UNSUPPORTED");
       default:
-        throw new Error('Incomplete framebuffer: Unknown status');
+        throw new Error("Incomplete framebuffer: Unknown status");
     }
 
     this.unbind();

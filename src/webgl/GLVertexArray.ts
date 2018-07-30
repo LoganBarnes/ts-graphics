@@ -1,11 +1,11 @@
-import { GLBuffer } from './GLBuffer';
-import { GLProgram } from './GLProgram';
+import { GLBuffer } from "./GLBuffer";
+import { GLProgram } from "./GLProgram";
 
 interface VAOElement {
   name: string;
   size: number;
   type: GLenum;
-  offset: number
+  offset: number;
 }
 
 interface GLVaoElement {
@@ -37,7 +37,7 @@ class GLVertexArray {
       const loc = gl.getAttribLocation(program.glId, element.name);
 
       if (loc < 0) {
-        throw new Error('Failed to find attrib location for: ' + element.name);
+        throw new Error("Failed to find attrib location for: " + element.name);
       }
 
       this.elements.push({
@@ -49,7 +49,12 @@ class GLVertexArray {
     }
   }
 
-  render(mode: GLenum, start: number, numVerts: number, ibo: null | GLBuffer = null): void {
+  render(
+    mode: GLenum,
+    start: number,
+    numVerts: number,
+    ibo: null | GLBuffer = null
+  ): void {
     const gl: WebGLRenderingContext = this.gl;
     this.vbo.bind();
 
@@ -61,7 +66,8 @@ class GLVertexArray {
         element.type,
         false,
         this.totalStride,
-        element.offset);
+        element.offset
+      );
     });
 
     if (ibo === null) {

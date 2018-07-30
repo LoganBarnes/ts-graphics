@@ -18,7 +18,7 @@ class GLProgram {
     const shaderIds: WebGLShader[] = [];
 
     for (let shader of shaders) {
-      const glShader: (WebGLShader | null) = gl.createShader(shader.type);
+      const glShader: WebGLShader | null = gl.createShader(shader.type);
       if (glShader === null) {
         throw new Error("Failed to create WebGL shader");
       }
@@ -27,12 +27,14 @@ class GLProgram {
       gl.compileShader(glShader);
 
       if (!gl.getShaderParameter(glShader, gl.COMPILE_STATUS)) {
-        throw new Error('Failed to compile shader: ' + gl.getShaderInfoLog(glShader));
+        throw new Error(
+          "Failed to compile shader: " + gl.getShaderInfoLog(glShader)
+        );
       }
       shaderIds.push(glShader);
     }
 
-    const program: (WebGLProgram | null) = gl.createProgram();
+    const program: WebGLProgram | null = gl.createProgram();
     if (program === null) {
       throw new Error("Failed to create WebGL program");
     }
@@ -43,7 +45,9 @@ class GLProgram {
     gl.linkProgram(program);
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      throw new Error('Failed to link program: ' + gl.getProgramInfoLog(program));
+      throw new Error(
+        "Failed to link program: " + gl.getProgramInfoLog(program)
+      );
     }
 
     for (let shaderToDetach of shaderIds) {
@@ -63,10 +67,13 @@ class GLProgram {
 
   setIntUniform(val: number | Int32Array, name: string): boolean {
     const gl: WebGLRenderingContext = this.gl;
-    const loc: WebGLUniformLocation | null = gl.getUniformLocation(this.glId, name);
+    const loc: WebGLUniformLocation | null = gl.getUniformLocation(
+      this.glId,
+      name
+    );
 
     if (!loc) {
-      console.error('Uniform location not found for: ' + name);
+      console.error("Uniform location not found for: " + name);
       return false;
     }
 
@@ -87,7 +94,7 @@ class GLProgram {
           gl.uniform4iv(loc, val);
           break;
         default:
-          throw new Error('GLSL ivec' + val.length + ' does not exist');
+          throw new Error("GLSL ivec" + val.length + " does not exist");
       }
     }
     return true;
@@ -95,10 +102,13 @@ class GLProgram {
 
   setFloatUniform(val: number | Float32Array, name: string): boolean {
     const gl: WebGLRenderingContext = this.gl;
-    const loc: WebGLUniformLocation | null = gl.getUniformLocation(this.glId, name);
+    const loc: WebGLUniformLocation | null = gl.getUniformLocation(
+      this.glId,
+      name
+    );
 
     if (!loc) {
-      console.error('Uniform location not found for: ' + name);
+      console.error("Uniform location not found for: " + name);
       return false;
     }
 
@@ -119,7 +129,7 @@ class GLProgram {
           gl.uniform4fv(loc, val);
           break;
         default:
-          throw new Error('GLSL vec' + val.length + ' does not exist');
+          throw new Error("GLSL vec" + val.length + " does not exist");
       }
     }
     return true;
@@ -127,10 +137,13 @@ class GLProgram {
 
   setMatrixUniform(val: Float32Array, name: string): boolean {
     const gl: WebGLRenderingContext = this.gl;
-    const loc: WebGLUniformLocation | null = gl.getUniformLocation(this.glId, name);
+    const loc: WebGLUniformLocation | null = gl.getUniformLocation(
+      this.glId,
+      name
+    );
 
     if (!loc) {
-      console.error('Uniform location not found for: ' + name);
+      console.error("Uniform location not found for: " + name);
       return false;
     }
 
@@ -150,12 +163,19 @@ class GLProgram {
     return true;
   }
 
-  setTextureUniform(texture: GLTexture, name: string, activeTex: number = 0): boolean {
+  setTextureUniform(
+    texture: GLTexture,
+    name: string,
+    activeTex: number = 0
+  ): boolean {
     const gl: WebGLRenderingContext = this.gl;
-    const loc: WebGLUniformLocation | null = gl.getUniformLocation(this.glId, name);
+    const loc: WebGLUniformLocation | null = gl.getUniformLocation(
+      this.glId,
+      name
+    );
 
     if (!loc) {
-      console.error('Uniform location not found for: ' + name);
+      console.error("Uniform location not found for: " + name);
       return false;
     }
 
